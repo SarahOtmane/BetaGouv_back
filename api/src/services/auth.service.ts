@@ -1,6 +1,8 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User, { IUser } from '../models/user.model';
+import Adress from '../models/adress.model';
+import Company from '../models/company.model';
 
 /**
  * Enregistre un nouvel utilisateur dans la base de données
@@ -11,12 +13,48 @@ export const registerUser = async (userData: {
   phone_number: string;
   name: string;
   role: string;
+  rue: string;
+  code_postal: string;
+  ville: string;
+  pays: string;
+  SIRET: string;
+  activite_principale: string;
 }): Promise<IUser> => {
   const hashedPassword = await bcrypt.hash(userData.password, 10);
+
+  const { rue, code_postal, ville, pays, SIRET, activite_principale } = userData;
+  const existingAdress = await Adress.findOne({ where: { rue, code_postal, ville, pays } });
+  let adressID : number;
+  if(existingAdress) {
+    adressID = existingAdress.getDataValue('id');
+  } else {
+    const newAdress = await Adress.create({ rue, code_postal, ville, pays });
+    adressID = newAdress.getDataValue('id');
+  }
+
+  if (userData.role === 'company' && (!SIRET || !activite_principale)) {
+    throw new Error('SIRET and activite_principale are required for entreprise role');
+  }
+  if (userData.role === 'company'){
+    const newCompany = await Company.create({
+      SIRET: userData.SIRET,
+      activite_principale: userData.activite_principale,
+    });
+
+    const newUser = await User.create({
+      ...userData,
+      password: hashedPassword,
+      id_adress: adressID,
+      id_company: newCompany.getDataValue('id'),
+    });
+
+    return newUser.toJSON() as IUser;
+  }
 
   const newUser = await User.create({
     ...userData,
     password: hashedPassword,
+    id_adress: adressID,
   });
 
   return newUser.toJSON() as IUser;
