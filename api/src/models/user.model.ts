@@ -1,6 +1,17 @@
 import { DataTypes } from 'sequelize';
 import sequelize from "../config/database";
 
+export interface IUser {
+    id?: number;
+    email: string;
+    password: string;
+    phone_number: string;
+    name: string;
+    role: string;
+    id_role?: number;
+    id_adress?: number;
+}
+
 const User = sequelize.define('User', {
     id: {
         type: DataTypes.INTEGER,
@@ -30,7 +41,7 @@ const User = sequelize.define('User', {
     },
     id_role: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
     },
     id_adress: {
         type: DataTypes.INTEGER,
