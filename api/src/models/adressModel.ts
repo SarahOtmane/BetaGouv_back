@@ -1,30 +1,33 @@
 import { DataTypes } from 'sequelize';
 import sequelize from "../config/database";
 
-const Company = sequelize.define('Company', {
+const Adress = sequelize.define('Adress', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },
-    SIRET: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-    },
-    activite_principale: {
+    rue: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    id_siege: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
+    code_postal: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    ville: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    pays: {
+        type: DataTypes.STRING,
+        allowNull: false,
     },
 }, {
-  tableName: 'companies',
+  tableName: 'adresses',
   timestamps: true,
   createdAt: true,
   updatedAt: true
 });
 
-export default Company;
+export default Adress;

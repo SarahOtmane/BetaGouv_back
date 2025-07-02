@@ -1,30 +1,37 @@
 import { DataTypes } from 'sequelize';
 import sequelize from "../config/database";
 
-const Company = sequelize.define('Company', {
+const MouthlyHighlight = sequelize.define('MouthlyHighlight', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },
-    SIRET: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-    },
-    activite_principale: {
+    photo: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    id_siege: {
+    description: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    mouth: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    id_school: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
     },
 }, {
-  tableName: 'companies',
+  tableName: 'mouthlyHighlights',
   timestamps: true,
   createdAt: true,
   updatedAt: true
 });
 
-export default Company;
+export default MouthlyHighlight;
