@@ -17,8 +17,7 @@ describe('Auth API', () => {
         password: 'Password123',
         phone_number: '0123456789',
         name: 'Test User',
-        role: 'company',
-        id_role: 1,
+        role: 'school',
     };
 
     describe('Register', () => {
