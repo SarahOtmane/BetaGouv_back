@@ -8,7 +8,7 @@ export interface IUser {
     phone_number: string;
     name: string;
     role: string;
-    id_role: number;
+    id_role?: number;
     id_adress?: number;
 }
 
@@ -41,7 +41,7 @@ const User = sequelize.define('User', {
     },
     id_role: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
     },
     id_adress: {
         type: DataTypes.INTEGER,
