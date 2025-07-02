@@ -23,7 +23,7 @@ const MouthlyHighlight = sequelize.define('MouthlyHighlight', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    id_lycee: {
+    id_school: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
