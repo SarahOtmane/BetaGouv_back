@@ -15,7 +15,7 @@ const Activity = sequelize.define('Activity', {
         type: DataTypes.DATE,
         allowNull: false,
     },
-    id_lycee: {
+    id_school: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
