@@ -1,13 +1,13 @@
-import Activity from "./activityModel";
-import Adress from "./adressModel";
-import Company from "./companyModel";
-import Demande from "./demandeModel";
-import Internship from "./intershipModel";
-import MouthlyHighlight from "./mouthlyHighlightModel";
-import School from "./schoolModel";
-import Siege from "./siegeModel";
-import Stat from "./statModel";
-import User from "./userModel";
+import Activity from "./activity.model";
+import Adress from "./adress.model";
+import Company from "./company.model";
+import Demande from "./demande.model";
+import Internship from "./intership.model";
+import MouthlyHighlight from "./mouthly_highlight.model";
+import School from "./school.model";
+import Siege from "./siege.model";
+import Stat from "./stat.model";
+import User from "./user.model";
 
 User.belongsTo(Company, { foreignKey: 'id_role' });
 Company.hasMany(User, { foreignKey: 'id_role' });
