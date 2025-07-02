@@ -35,7 +35,7 @@ const Stat = sequelize.define('Stat', {
         type: DataTypes.INTEGER,
         allowNull: true,
     },
-    id_lycee: {
+    id_school: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
