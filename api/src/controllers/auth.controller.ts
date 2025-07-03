@@ -1,6 +1,32 @@
 import { Request, Response } from 'express';
 import { registerUser, loginUser } from '../services/auth.service';
 
+
+/**
+ * Authentification Controller
+ * 
+ * Ce contrôleur gère l'enregistrement et la connexion des utilisateurs.
+ * 
+ * - `register`: Enregistre un nouvel utilisateur avec les informations fournies.
+ * - `login`: Authentifie un utilisateur et retourne un token JWT.
+ */
+
+/**
+  Enregistre un nouvel utilisateur.
+  Le body de la requête doit contenir :
+  {
+    "email": "test",
+    "password: "password123",
+    "phone_number": "0123456789",
+    "name": "John Doe",
+    "role": "company" | "school" | "admin",
+    "rue": "123 Rue de Paris",
+    "code_postal": "75001",
+    "ville": "Paris",
+    "pays": "France",
+    "SIRET": "12345678900011",
+    "activite_principale": "Développement web"
+ */
 export const register = async (req: Request, res: Response) => {
   try {
     const { 
