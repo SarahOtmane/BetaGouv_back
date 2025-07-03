@@ -1,6 +1,14 @@
 import { DataTypes } from 'sequelize';
 import sequelize from "../config/database";
 
+export interface IAdress {
+    id?: number;
+    rue: string;
+    code_postal: string;
+    ville: string;
+    pays: string;
+}
+
 const Adress = sequelize.define('Adress', {
     id: {
         type: DataTypes.INTEGER,

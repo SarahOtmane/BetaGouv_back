@@ -33,6 +33,11 @@ const School = sequelize.define('School', {
         type: DataTypes.JSON,
         allowNull: true,
     },
+    SIRET: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+    },
 }, {
   tableName: 'schools',
   timestamps: true,
