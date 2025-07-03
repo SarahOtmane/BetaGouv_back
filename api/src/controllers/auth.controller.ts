@@ -19,7 +19,7 @@ import { registerUser, loginUser } from '../services/auth.service';
     "password: "password123",
     "phone_number": "0123456789",
     "name": "John Doe",
-    "role": "company" | "school" | "admin",
+    "role": "company" | "school",
     "rue": "123 Rue de Paris",
     "code_postal": "75001",
     "ville": "Paris",
