@@ -6,6 +6,9 @@ import Company from '../models/company.model';
 
 /**
  * Enregistre un nouvel utilisateur dans la base de données
+ * enregister un user avec les infos principales (email, password, phone_number, name, role )
+ * creer une adresse si elle n'existe pas déjà
+ * creer une entreprise si le role est 'company' et les infos SIRET et activite_principale sont fournies
  */
 export const registerUser = async (userData: {
   email: string;
