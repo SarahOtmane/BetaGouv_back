@@ -4,6 +4,16 @@ import User from "../models/user.model";
 import { AuthenticatedRequest } from "../middlewares/auth.middleware";
 
 
+/*
+    Contrôleur pour la gestion des écoles
+    - Ajout d'un site web à l'école
+    - Récupération des informations de l'école
+
+    Le body de la requête pour ajouter un site web doit contenir :
+    {
+        "website": "https://example.com"
+    }
+*/
 export const addWebsiteToSchool = async (req:AuthenticatedRequest, res:Response) => {
     const { website } = req.body;
     const user = req.user; 
