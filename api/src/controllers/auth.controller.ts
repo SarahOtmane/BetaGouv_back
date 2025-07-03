@@ -51,6 +51,15 @@ export const register = async (req: Request, res: Response) => {
   }
 };
 
+
+/**
+  Authentifie un utilisateur et retourne un token JWT.
+  Le body de la requête doit contenir :
+  {
+    "email": "test",
+    "password": "password123"
+  }
+ */
 export const login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
