@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import User, { IUser } from '../models/user.model';
 import Adress from '../models/adress.model';
 import Company from '../models/company.model';
+import School from '../models/school.model';
 
 /**
  * Enregistre un nouvel utilisateur dans la base de données
@@ -36,8 +37,13 @@ export const registerUser = async (userData: {
   }
 
   if (userData.role === 'company' && (!SIRET || !activite_principale)) {
-    throw new Error('SIRET and activite_principale are required for entreprise role');
+    throw new Error('SIRET and activite_principale are required for company role');
   }
+
+  if (userData.role === 'school' && (!SIRET)) {
+    throw new Error('SIRET are required for school role');
+  }
+
   if (userData.role === 'company'){
     const newCompany = await Company.create({
       SIRET: userData.SIRET,
@@ -48,19 +54,24 @@ export const registerUser = async (userData: {
       ...userData,
       password: hashedPassword,
       id_adress: adressID,
-      id_company: newCompany.getDataValue('id'),
+      id_role: newCompany.getDataValue('id'),
+    });
+
+    return newUser.toJSON() as IUser;
+  }else if( userData.role === 'school'){
+    const newSchool = await School.create({
+      SIRET: userData.SIRET,
+    })
+
+    const newUser = await User.create({
+      ...userData,
+      password: hashedPassword,
+      id_adress: adressID,
+      id_role: newSchool.getDataValue('id'),
     });
 
     return newUser.toJSON() as IUser;
   }
-
-  const newUser = await User.create({
-    ...userData,
-    password: hashedPassword,
-    id_adress: adressID,
-  });
-
-  return newUser.toJSON() as IUser;
 };
 
 /**
