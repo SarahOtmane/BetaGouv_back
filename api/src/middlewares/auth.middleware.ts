@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 export interface AuthenticatedRequest extends Request {
   user?: {
     id: string;
-    role: boolean;
+    role: string;
   };
 }
 
@@ -19,7 +19,7 @@ export const authenticate = (
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as {
       id: string;
-      role: boolean;
+      role: string;
     };
     req.user = decoded;
     next();
