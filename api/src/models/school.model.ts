@@ -9,7 +9,7 @@ const School = sequelize.define('School', {
     },
     website: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         unique: true,
     },
     logo: {
@@ -19,7 +19,7 @@ const School = sequelize.define('School', {
     jobs: {
         // tableaus des id_jobs en db
         type: DataTypes.JSON,
-        allowNull: false,
+        allowNull: true,
     },
     img_outillage: {
         type: DataTypes.JSON,
