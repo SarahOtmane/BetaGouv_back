@@ -11,7 +11,7 @@ cd BetaGouv_back
 ### 2. Installer les dépendances
 ```bash
 docker run -ti --rm -v $PWD:/app -w /app node:20.17-slim /bin/sh
-cd app
+cd api
 npm install
 exit
 ```
