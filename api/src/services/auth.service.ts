@@ -28,13 +28,11 @@ export const registerUser = async (userData: {
 
   const { rue, code_postal, ville, pays, SIRET, activite_principale } = userData;
   const existingAdress = await Adress.findOne({ where: { rue, code_postal, ville, pays } });
-  console.log('existingAdress', existingAdress);
   let adressID : number;
   if(existingAdress) {
     adressID = existingAdress.getDataValue('id');
   } else {
     const newAdress = await Adress.create({ rue, code_postal, ville, pays });
-    console.log('newAdress', newAdress);
     adressID = newAdress.getDataValue('id');
   }
 
@@ -56,8 +54,6 @@ export const registerUser = async (userData: {
       activite_principale: userData.activite_principale,
     });
 
-    console.log('newCompany', newCompany);
-
     const newUser = await User.create({
       ...userData,
       password: hashedPassword,
@@ -70,8 +66,6 @@ export const registerUser = async (userData: {
     const newSchool = await School.create({
       SIRET: userData.SIRET,
     });
-
-    console.log('newSchool', newSchool);
 
     const newUser = await User.create({
       ...userData,
