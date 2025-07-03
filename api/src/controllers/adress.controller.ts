@@ -2,6 +2,20 @@ import { Request, Response } from 'express';
 import * as adressService from '../services/adress.service';
 import { AuthenticatedRequest } from '../middlewares/auth.middleware';
 
+
+/**
+ * Contrôleur pour la gestion des adresses
+ * - Créer une nouvelle adresse
+ * - Récupérer une adresse par son ID
+ * 
+ * Le body de la requête pour créer une adresse doit contenir :
+ * {
+ *   "rue": "123 Rue de Paris",
+ *   "code_postal": "75001",
+ *   "ville": "Paris",
+ *   "pays": "France"
+ * }
+ */
 export const createAdress = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { rue, code_postal, ville, pays } = req.body;

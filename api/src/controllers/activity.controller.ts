@@ -3,6 +3,24 @@ import * as activityService from '../services/activity.service';
 import { AuthenticatedRequest } from '../middlewares/auth.middleware';
 import User from '../models/user.model';
 
+
+/**
+ * Contrôleur pour la gestion des activités
+ * - Créer une nouvelle activité
+ * - Récupérer toutes les activités d'une école
+ * - Récupérer une activité par son ID
+ * - Mettre à jour une activité
+ * - Supprimer une activité
+ *
+ */
+
+/* * Crée une nouvelle activité pour une école.
+ * Le body de la requête doit contenir :
+ * {
+ *   "type": "événement",
+ *   "date": "2023-10-01T00:00:00Z"
+ * }
+ */ 
 export const create = async (req: AuthenticatedRequest, res: Response) => {
   try {
     if (!req.user || req.user.role !== 'school') {

@@ -5,6 +5,10 @@ import { setupSwagger } from './swagger';
 import authRouter from '../routes/auth.route';
 import adressRouter from '../routes/adress.route';
 import schoolRouter from '../routes/school.route';
+import companyRouter from '../routes/company.route';
+import intershipRouter from '../routes/internship.route';
+import highlightRouter from '../routes/mouthly_highlight.route';
+import statRouter from '../routes/stat.route';
 
 const app = express();
 
@@ -24,6 +28,10 @@ app.use(express.json());
 app.use('/auth', authRouter );
 app.use('/adress', adressRouter);
 app.use('/school', schoolRouter);
+app.use('/company', companyRouter);
+app.use('/internship', intershipRouter);
+app.use('/highlights', highlightRouter);
+app.use('/stats', statRouter);
 
 
 setupSwagger(app);
