@@ -1,9 +1,10 @@
-import { where } from "sequelize";
+import { Response } from 'express';
 import School from "../models/school.model";
 import User from "../models/user.model";
+import { AuthenticatedRequest } from "../middlewares/auth.middleware";
 
 
-export const addWebsiteToSchool = async (req, res) => {
+export const addWebsiteToSchool = async (req:AuthenticatedRequest, res:Response) => {
     const { website } = req.body;
     const user = req.user; 
 
@@ -29,7 +30,7 @@ export const addWebsiteToSchool = async (req, res) => {
     }
 }
 
-export const getSchool = async (req, res) => {
+export const getSchool = async (req:AuthenticatedRequest, res:Response) => {
     const user = req.user; 
 
     if (!user || user.role !== 'school') {
