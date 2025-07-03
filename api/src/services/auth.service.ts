@@ -36,6 +36,10 @@ export const registerUser = async (userData: {
     adressID = newAdress.getDataValue('id');
   }
 
+  if(userData.role !== 'company' && userData.role !== 'school') {
+    throw new Error('Invalid role. Must be "company" or "school".');
+  }
+
   if (userData.role === 'company' && (!SIRET || !activite_principale)) {
     throw new Error('SIRET and activite_principale are required for company role');
   }
@@ -61,7 +65,7 @@ export const registerUser = async (userData: {
   }else if( userData.role === 'school'){
     const newSchool = await School.create({
       SIRET: userData.SIRET,
-    })
+    });
 
     const newUser = await User.create({
       ...userData,
